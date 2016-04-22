@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-
+# Copyright 2016 Mirantis, Inc.
+#
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
 # a copy of the License at
@@ -12,8 +12,10 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-import pbr.version
 
+def setup_hook(config):
+    import pbr
+    import pbr.packaging
 
-__version__ = pbr.version.VersionInfo(
-    'volume_manager').version_string()
+    # this monkey patch is to avoid appending git version to version
+    pbr.packaging._get_version_from_git = lambda pre_version: pre_version
