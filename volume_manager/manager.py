@@ -28,7 +28,7 @@ import six
 from nailgun import errors
 from nailgun.logger import logger
 
-from .objects.adapters import NailgunNodeAdapter
+from volume_manager.objects.adapters import NailgunNodeAdapter
 
 
 def is_service(space):

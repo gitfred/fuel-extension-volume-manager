@@ -17,13 +17,12 @@
 """
 Handlers dealing with disks
 """
-
-from ..manager import DisksFormatConvertor
-from ..manager import VolumeManager
-from ..validators.disks import NodeDisksValidator
 from nailgun.api.v1.handlers.base import BaseHandler
 from nailgun.api.v1.handlers.base import content
 from nailgun import objects
+from volume_manager.manager import DisksFormatConvertor
+from volume_manager.manager import VolumeManager
+from volume_manager.validators.disks import NodeDisksValidator
 
 
 class NodeDisksHandler(BaseHandler):

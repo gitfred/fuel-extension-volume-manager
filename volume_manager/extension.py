@@ -27,11 +27,11 @@ from nailgun.logger import logger
 from nailgun import objects
 from nailgun.utils.ceph import get_pool_pg_count
 
-from .handlers.disks import NodeDefaultsDisksHandler
-from .handlers.disks import NodeDisksHandler
-from .handlers.disks import NodeVolumesInformationHandler
-from .manager import calc_glance_cache_size
-from .manager import VolumeManager
+from volume_manager.handlers.disks import NodeDefaultsDisksHandler
+from volume_manager.handlers.disks import NodeDisksHandler
+from volume_manager.handlers.disks import NodeVolumesInformationHandler
+from volume_manager.manager import calc_glance_cache_size
+from volume_manager.manager import VolumeManager
 
 
 class VolumeObjectMethodsMixin(object):

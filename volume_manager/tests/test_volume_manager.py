@@ -18,8 +18,8 @@ from mock import patch
 from oslo_serialization import jsonutils
 
 from nailgun import consts
-from nailgun.extensions.volume_manager.extension import VolumeManagerExtension
-from nailgun.extensions.volume_manager import manager
+from volume_manager.extension import VolumeManagerExtension
+from volume_manager import manager
 from nailgun.test import base
 from nailgun.utils import reverse
 

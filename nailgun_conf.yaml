@@ -1,0 +1,7 @@
+DATABASE:
+  engine: "postgresql"
+  host: "localhost"
+  name: "openstack_citest"
+  passwd: "openstack_citest"
+  port: "5432"
+  user: "openstack_citest"

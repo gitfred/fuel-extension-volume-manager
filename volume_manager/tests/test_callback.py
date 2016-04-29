@@ -16,9 +16,9 @@
 import mock
 
 from nailgun.extensions import fire_callback_on_before_deployment_check
-from nailgun.extensions.volume_manager.extension import VolumeManagerExtension
-from nailgun.extensions.volume_manager.manager import VolumeManager
 from nailgun.test.base import BaseTestCase
+from volume_manager.extension import VolumeManagerExtension
+from volume_manager.manager import VolumeManager
 
 
 class TestCheckBeforeDeploymentCallback(BaseTestCase):

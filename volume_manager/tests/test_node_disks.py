@@ -23,17 +23,17 @@ import six
 
 from nailgun import consts
 from nailgun import errors
-from nailgun.extensions.volume_manager.extension import VolumeManagerExtension
-from nailgun.extensions.volume_manager.manager import Disk
-from nailgun.extensions.volume_manager.manager import DisksFormatConvertor
-from nailgun.extensions.volume_manager.manager import get_node_spaces
-from nailgun.extensions.volume_manager.manager import only_disks
-from nailgun.extensions.volume_manager.manager import only_vg
-from nailgun.extensions.volume_manager.manager import VolumeManager
 from nailgun.test.base import BaseIntegrationTest
 from nailgun.test.base import BaseTestCase
 from nailgun.test.base import fake_tasks
 from nailgun.utils import reverse
+from volume_manager.extension import VolumeManagerExtension
+from volume_manager.manager import Disk
+from volume_manager.manager import DisksFormatConvertor
+from volume_manager.manager import get_node_spaces
+from volume_manager.manager import only_disks
+from volume_manager.manager import only_vg
+from volume_manager.manager import VolumeManager
 
 
 class TestNodeDisksHandlers(BaseIntegrationTest):

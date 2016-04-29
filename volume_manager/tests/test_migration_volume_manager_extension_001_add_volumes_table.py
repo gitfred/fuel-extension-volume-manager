@@ -21,15 +21,15 @@ from nailgun.db import dropdb
 from nailgun.db.migration import ALEMBIC_CONFIG
 from nailgun.db.migration import make_alembic_config_from_extension
 from nailgun.extensions.consts import extensions_migration_buffer_table_name
-from nailgun.extensions.volume_manager.extension import VolumeManagerExtension
 from nailgun.test import base
+from volume_manager.extension import VolumeManagerExtension
 
 
 _core_test_revision = '1e50a4903910'
 _extension_test_revision = '086cde3de7cf'
 
 
-def setup_module(module):
+def setup_module():
     dropdb()
     # Run core migration in order to create buffer table
     alembic.command.upgrade(ALEMBIC_CONFIG, _core_test_revision)
@@ -58,13 +58,16 @@ def prepare():
 
 class TestVolumeManagerExtensionAddVolumesTable(base.BaseAlembicMigrationTest):
 
+    @classmethod
+    def setUpClass(cls):
+        setup_module()
+
     def test_add_volumes_table(self):
         result = db.execute(
             sa.select([
                 self.meta.tables['volume_manager_node_volumes'].c.node_id,
                 self.meta.tables['volume_manager_node_volumes'].c.volumes]))
         records = list(result)
-
         node_ids = [r[0] for r in records]
         self.assertItemsEqual(node_ids, [1, 2])
 

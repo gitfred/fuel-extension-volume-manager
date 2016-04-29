@@ -14,8 +14,9 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from ..objects.adapters import NailgunNodeAdapter
-from .json_schema.disks import disks_simple_format_schema
+from volume_manager.objects.adapters import NailgunNodeAdapter
+from volume_manager.validators.json_schema.disks \
+    import disks_simple_format_schema
 from nailgun.api.v1.validators.base import BasicValidator
 from nailgun import errors
 
