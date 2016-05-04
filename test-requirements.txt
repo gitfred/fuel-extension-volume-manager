@@ -1,4 +1,4 @@
-os-testr
-zuul
+os-testr>=0.6.0
 mock==1.0.1
 webtest==2.0.14
+hacking==0.10
