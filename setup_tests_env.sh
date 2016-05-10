@@ -18,14 +18,9 @@ set -eu
 
 export CLONEMAP=/tmp/clone-map-volman.yml
 export FUEL_WEB_PATH=${FUEL_WEB_PATH:-/tmp/fuel-web}
-export FUEL_VOLUME_MANAGER_EXTENSION_PATH=${FUEL_VOLUME_MANAGER_EXTENSION_PATH:-/tmp/fuel-extension-volume-manager}
 export NAILGUN_TOOLS_PATH=${NAILGUN_TOOLS_PATH:-$FUEL_WEB_PATH/nailgun/tools}
 
-
 export FUEL_WEB_PROJECT=${FUEL_WEB_PROJECT:-openstack/fuel-web}
-export FUEL_VOLUME_MANAGER_EXTENSION_PROJECT=${FUEL_VOLUME_MANAGER_EXTENSION_PROJECT:-openstack/fuel-extension-volume-manager}
-
-
 
 export NAILGUN_DB=${NAILGUN_DB:-openstack-citest}
 export NAILGUN_DB_USER=${NAILGUN_DB_USER:-openstack-citest}
@@ -37,8 +32,6 @@ cat > $CLONEMAP << EOF
 clonemap:
 - name: ([A-Za-z0-9-_]+)/fuel-web
   dest: $FUEL_WEB_PATH
-- name: ([A-Za-z0-9-_]+)/fuel-extension-volume-manager
-  dest: $FUEL_VOLUME_MANAGER_EXTENSION_PATH
 EOF
 
 cat > $NAILGUN_CONFIG << EOF
@@ -52,17 +45,16 @@ DATABASE:
   user: $NAILGUN_DB_USER
 EOF
 
-rm -rf $FUEL_WEB_PATH $FUEL_VOLUME_MANAGER_EXTENSION_PATH
+rm -rf $FUEL_WEB_PATH
 
 zuul-cloner \
     git://github.com \
     $FUEL_WEB_PROJECT \
-    $FUEL_VOLUME_MANAGER_EXTENSION_PROJECT \
     -m $CLONEMAP \
     --project-branch $FUEL_WEB_PROJECT=wo-volman
 
 pip install -e $FUEL_WEB_PATH/nailgun
-pip install -e $FUEL_VOLUME_MANAGER_EXTENSION_PATH
+pip install -e .
 bash -c "$NAILGUN_TOOLS_PATH/env.sh prepare_nailgun_env"
 bash -c "$NAILGUN_TOOLS_PATH/env.sh prepare_nailgun_database"
 bash -c "$NAILGUN_TOOLS_PATH/env.sh prepare_nailgun_server"
